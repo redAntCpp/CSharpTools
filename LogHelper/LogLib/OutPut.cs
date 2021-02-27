@@ -50,7 +50,6 @@ namespace LogLib
         //私有成员
         private string FLogFileName;
         private static Mutex FLock;//定义一个互斥信号量
-        private string LogPath;
 
 
         //构造函数1，从配置中读取写日志的地址
@@ -65,7 +64,7 @@ namespace LogLib
         }
 
         /// <summary>
-        /// 构造函数2：.exe文件，
+        /// 构造函数2：.exe文件，暂时不启用
         /// </summary>
         /*
         public LogHelper LogHelperForExe()
