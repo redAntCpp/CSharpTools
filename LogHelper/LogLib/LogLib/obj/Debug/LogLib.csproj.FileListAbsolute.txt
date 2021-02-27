@@ -1,0 +1,5 @@
+G:\C#WorkSpace\LogLib\LogLib\bin\Debug\LogLib.dll
+G:\C#WorkSpace\LogLib\LogLib\bin\Debug\LogLib.pdb
+G:\C#WorkSpace\LogLib\LogLib\obj\Debug\LogLib.csprojResolveAssemblyReference.cache
+G:\C#WorkSpace\LogLib\LogLib\obj\Debug\LogLib.dll
+G:\C#WorkSpace\LogLib\LogLib\obj\Debug\LogLib.pdb
