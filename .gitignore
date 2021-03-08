@@ -1,0 +1,4 @@
+#忽略obj文件，log文件
+log/
+LOG/
+obj/
