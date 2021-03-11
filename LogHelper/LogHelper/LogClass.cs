@@ -51,9 +51,9 @@ namespace LogHelper
         /// </summary>
         /// <param name="LogPath">存放日志文件的物理地址</param>
         /// <param name="SystemName">系统名称</param>
-        public LogClass(string LogPath, string SystemName)
+        public LogClass(string LogPath, string SystemName,int Loglevel = 1)
         {
-            createLog(LogPath, SystemName);
+            createLog(LogPath, SystemName, Loglevel);
         }
 
 
@@ -125,7 +125,7 @@ namespace LogHelper
             }
         }
 
-        private void createLog(string LogPath, string SystemName)
+        private void createLog(string LogPath, string SystemName,int LogLevel)
         {
             string LogDir = LogPath + "\\" + "Logs";//读取配置的地址
             if (!Directory.Exists(LogDir))
@@ -135,6 +135,7 @@ namespace LogHelper
             //日志文本的路径跟名称
             FLogFileName = LogDir + "\\" + SystemName + DateTime.Now.ToString("yyyy-MM-dd") + ".log";
             FLock = new Mutex();//新建一个互斥变量
+            Level = LogLevel;//设置日志等级
         }
     }
 }
