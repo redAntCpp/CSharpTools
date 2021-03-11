@@ -5,10 +5,11 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Management;
 
 namespace DBHelper
 {
-    class MySqlHelper
+    public class MySqlHelper  //必须为pubic才能被访问
     {
         /// <summary>
         /// 创建一个MySql的连接字符串，用于建立MySql连接
