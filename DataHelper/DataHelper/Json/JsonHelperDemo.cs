@@ -15,6 +15,7 @@ private void button5_Click(object sender, EventArgs e)
             JsonDocument manager1 = new JsonDocument();
             manager1.add(new JsonElement("salary", "6000"));
             manager1.add(new JsonElement("age", "23"));
+			//字符类数组的组装
             string[] carslist =
             {
                 "Porsche", "BMW", "Volvo"
