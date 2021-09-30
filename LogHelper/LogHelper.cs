@@ -5,7 +5,7 @@ using System.Threading;
 
 namespace LogHelper
 {
-    public class LogClass
+    public class Log
     {
         //字符串数组常量定义（记住格式）//这个是从0开始，枚举是从一
         public static readonly string[] STR_EVENT_TYPE = new string[]
@@ -51,7 +51,7 @@ namespace LogHelper
         /// </summary>
         /// <param name="LogPath">存放日志文件的物理地址</param>
         /// <param name="SystemName">系统名称</param>
-        public LogClass(string LogPath, string SystemName,int Loglevel = 1)
+        public LogClass(string LogPath, string SystemName, int Loglevel = 1)
         {
             createLog(LogPath, SystemName, Loglevel);
         }
@@ -125,7 +125,7 @@ namespace LogHelper
             }
         }
 
-        private void createLog(string LogPath, string SystemName,int LogLevel)
+        private void createLog(string LogPath, string SystemName, int LogLevel)
         {
             string LogDir = LogPath + "\\" + "Logs";//读取配置的地址
             if (!Directory.Exists(LogDir))
