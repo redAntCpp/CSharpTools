@@ -1,4 +1,4 @@
-﻿using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;  //需要添加，使用Nuget包引用
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,8 +9,11 @@ using System.Management;
 
 namespace DBHelper
 {
-    public class MySqlHelper  //必须为pubic才能被访问
+    public class MySqlHelper  
     {
+		
+		//新增私有变量，用于建立MySql连接
+		private ConnectMysqlString;
         /// <summary>
         /// 创建一个MySql的连接字符串，用于建立MySql连接
         /// 通常作为全局变量
@@ -21,23 +24,23 @@ namespace DBHelper
         /// <param name="password">密码</param>
         /// <param name="database">数据库名</param>
         /// <returns></returns>
-        public string buildConnetionString(string server, string port, string user, string password, string database)
+        public string AddConnetionString(string server, string port, string user, string password, string database)
         {
             string ConnectMysqlString = $"server={server};" +
                                         $"port={port};" +
                                         $"user={user};" +
                                         $"password={password};" +
                                         $"database={database};";
-            return ConnectMysqlString;
+            this.ConnectMysqlString = ConnectMysqlString;
         }
         /// <summary>
         /// 测试数据库连接
         /// </summary>
-        /// <param name="connectString">连接字符串</param>
+        /// <param name="ConnectMysqlString">连接字符串</param>
         /// <returns>返回是否成功</returns>
-        private bool checkDBConnect(string connectString)
+        private bool checkDBConnect(string ConnectMysqlString)
         {
-            MySqlConnection conn = new MySqlConnection(connectString);
+            MySqlConnection conn = new MySqlConnection(ConnectMysqlString);
             try
             {
                 conn.Open();//打开通道，建立连接，可能出现异常,使用try catch语句
@@ -56,13 +59,13 @@ namespace DBHelper
         /// 从数据库中选择数据集，直接查询数据集
         /// </summary>
         /// <param name="sqlStr">sql语句</param>
-        /// <param name="connetString">连接字符串</param>
+        /// <param name="ConnectMysqlString">连接字符串</param>
         /// <returns>返回结果集</returns>
-        public DataSet selectData(string sqlStr, string connetString)
+        public DataSet selectData(string sqlStr)
         {
             try
             {
-                using (MySqlConnection conn = new MySqlConnection(connetString))
+                using (MySqlConnection conn = new MySqlConnection(ConnectMysqlString))
                 {
                     MySqlDataAdapter sda = new MySqlDataAdapter(sqlStr, conn);
                     DataSet ds = new DataSet();
@@ -79,12 +82,12 @@ namespace DBHelper
         /// 从数据库中选择数据集,重载函数，采用参数化，防止sql注入
         /// </summary>
         /// <param name="sqlStr">sql语句</param>
-        /// <param name="connetString">连接字符串</param>
+        /// <param name="ConnectMysqlString">连接字符串</param>
         /// <param name="parameters">参数数组</param>
         /// <returns></returns>
-        public DataSet selectData(string sqlStr, string connetString, params MySqlParameter[] parameters)
+        public DataSet selectData(string sqlStr, params MySqlParameter[] parameters)
         {
-            using (MySqlConnection conn = new MySqlConnection(connetString))
+            using (MySqlConnection conn = new MySqlConnection(ConnectMysqlString))
             {
                 conn.Open();
                 DataSet ds = new DataSet();
@@ -110,12 +113,12 @@ namespace DBHelper
         /// 执行存储过程，返回结果集
         /// </summary>
         /// <param name="procName">存储过程名称</param>
-        /// <param name="connetString">连接字符串</param>
+        /// <param name="ConnectMysqlString">连接字符串</param>
         /// <param name="parameters">参数数组</param>
         /// <returns></returns>
-        DataSet ExecSelectStoredProcedure(string procName, string connetString, params MySqlParameter[] parameters)
+        DataSet ExecSelectStoredProcedure(string procName, params MySqlParameter[] parameters)
         {
-            using (MySqlConnection conn = new MySqlConnection(connetString))
+            using (MySqlConnection conn = new MySqlConnection(ConnectMysqlString))
             {
                 conn.Open();
                 DataSet ds = new DataSet();
