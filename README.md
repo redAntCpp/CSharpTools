@@ -12,5 +12,5 @@
 ## 修改记录
 ### 2021年9月30日19:01:25
 1. 对DBHelpe、Cryptography、LogHelper 的项目文件进行了移除，保留核心代码
-2. CryptoHelper新增MS5加密方式，对DES加密进行优化，对RSA加密进行优化
-3. DBHelpe：优化了sqlserver操作处理，对执行涉及修改的存储过程的添加事务机制，部分选择语句新增参数化实现，以保证其安全性
+2. CryptoHelper新增MD5加密方式，对DES加密进行优化，对RSA加密进行优化
+3. DBHelper：优化了sqlserver操作处理，对执行涉及修改的存储过程的添加事务机制，部分选择语句新增参数化实现，以保证其安全性
