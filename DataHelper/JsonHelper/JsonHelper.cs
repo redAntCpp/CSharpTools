@@ -154,7 +154,7 @@ namespace DataHelper
         }
 
         //输出字符串
-        private string tostring()
+        public string tostring()
         {
             return JElement;
         }
@@ -171,7 +171,7 @@ namespace DataHelper
         {
             this.Jkey = key;
             this.jsonValue = value;
-            JElement = string.Format("\"'{0}'\":\"" + JValue + "\"", Jkey);
+            JElement = string.Format("\"{0}\":\"" + JValue + "\"", Jkey);
         }
     }
 
@@ -212,9 +212,8 @@ namespace DataHelper
         //输出函数
         private string tostring()
         {
-            string tempvaule = "{" + JObjectValue + "}";
             string temp = string.Format("\"{0}\":", Jkey);
-            temp = temp + tempvaule;
+            temp = temp + JObjectValue;
             return temp;
         }
         public JsonObject(string key)
@@ -222,45 +221,10 @@ namespace DataHelper
             this.Jsonkey = key;
             this.innerText = "";
         }
-        //可考虑取消
-        public JsonObject(string key, JsonElement[] JsonElementList)
+        public JsonObject(string key,JsonDocument jd)
         {
             this.Jsonkey = key;
-            string JsonElementListString = "";
-            foreach (JsonElement je in JsonElementList)  //遍历每一个json元素,组装好json元素数据
-            {
-                JsonElementListString = JsonElementListString + je.innerText + ',';
-            }
-            JsonElementListString = JsonElementListString.Remove(JsonElementListString.Length - 1, 1);
-            this.innerText = JsonElementListString;
-        }
-        //新增一个元素
-        public void add(JsonElement je)
-        {
-
-            if (JObjectValue == "")
-            {
-                //没有就新建
-                this.innerText = je.innerText;
-            }
-            else
-            {
-                //有就追加
-                this.innerText = JObjectValue + "," + je.innerText;
-            }
-        }
-        public void add(JsonArray ja)
-        {
-            if (JObjectValue == "")
-            {
-                //没有就新建
-                this.innerText = ja.tostring();
-            }
-            else
-            {
-                //有就追加
-                this.innerText = JObjectValue + "," + ja.tostring();
-            }
+            this.innerText = jd.innerText;
         }
     }
 
@@ -270,6 +234,8 @@ namespace DataHelper
     /// Description：
     ///   1.JsonArray，一个简单的json数组，通常一个json数组内为一个字符串数组，或者一个json对象素组
     ///   2.add方法，对此json数组新增一个元素
+    ///   ============================================
+    ///   2022年1月23日20:54:22 redAnt 新增对数组的处理，当Jkey为空的情况
     /// </summary>
 
     class JsonArray
@@ -302,6 +268,12 @@ namespace DataHelper
             JArryList = new List<JsonDocument>();
             JstrArryList = new List<string>();
         }
+        public JsonArray()
+        {
+            this.Jkey = "";
+            JArryList = new List<JsonDocument>();
+            JstrArryList = new List<string>();
+        }
         //输出函数
         public string tostring()
         {
@@ -329,9 +301,17 @@ namespace DataHelper
             }
             //分开解析
             StrValueList = "[" + StrValueList + "]";
-            string temp = string.Format("\"{0}\":", Jkey);
-            StrValueList = temp + StrValueList;
-            return StrValueList;
+            //2022年1月23日20:53:25 新增数组中key为空的情况
+            if (Jkey == "")
+            {
+                return StrValueList;
+            }
+            else
+            {
+                string temp = string.Format("\"{0}\":", Jkey);
+                StrValueList = temp + StrValueList;
+                return StrValueList;
+            }
         }
         //新增一个元素
         public void add(string strValue)
