@@ -1,5 +1,5 @@
 private void button5_Click(object sender, EventArgs e)
-        {
+{
             //1. 创建一个json元素
             JsonElement companyID = new JsonElement("companyID", "15");
             JsonArray employeesArry = new JsonArray("employees");
@@ -41,7 +41,7 @@ private void button5_Click(object sender, EventArgs e)
 
             //输出文档
             textBox1.Text = jd.innerText;
-        }
+ }
 
 /*
 
