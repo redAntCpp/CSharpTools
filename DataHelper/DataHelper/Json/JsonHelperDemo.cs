@@ -41,3 +41,28 @@ private void button5_Click(object sender, EventArgs e)
             //Êä³öÎÄµµ
             textBox1.Text = jd.innerText;
         }
+
+
+
+{
+	"'companyID'": "15",
+	"employees": [{
+		"'firstName'": "Bill",
+		"'lastName'": "Gates"
+	}, {
+		"'firstName'": "",
+		"'lastName'": "Bush"
+	}],
+	"manager": [{
+		"'salary'": "6000",
+		"'age'": "23"
+	}, {
+		"'salary'": "8000",
+		"'age'": "26",
+		"cars": ["Porsche", "BMW", "Volvo"]
+	}],
+	"cc": {
+		"'salary'": "test",
+		"'age'": "100"
+	}
+}
