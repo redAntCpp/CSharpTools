@@ -15,7 +15,6 @@ private void button5_Click(object sender, EventArgs e)
             JsonDocument manager1 = new JsonDocument();
             manager1.add(new JsonElement("salary", "6000"));
             manager1.add(new JsonElement("age", "23"));
-			//字符类数组的组装
             string[] carslist =
             {
                 "Porsche", "BMW", "Volvo"
@@ -27,9 +26,11 @@ private void button5_Click(object sender, EventArgs e)
             manager2.add(cars);
             manager.add(manager1);
             manager.add(manager2);
-            JsonObject jo = new JsonObject("cc");
-            jo.add(new JsonElement("salary", "test"));
-            jo.add(new JsonElement("age", "100"));
+
+            JsonDocument cc_txt = new JsonDocument();
+            cc_txt.add(new JsonElement("salary", "test"));
+            cc_txt.add(new JsonElement("age", "100"));
+            JsonObject jo = new JsonObject("cc", cc_txt);
 
             //组装一下总体的文档
             JsonDocument jd = new JsonDocument();
@@ -42,7 +43,7 @@ private void button5_Click(object sender, EventArgs e)
             textBox1.Text = jd.innerText;
         }
 
-
+/*
 
 {
 	"'companyID'": "15",
@@ -66,3 +67,5 @@ private void button5_Click(object sender, EventArgs e)
 		"'age'": "100"
 	}
 }
+*/
+

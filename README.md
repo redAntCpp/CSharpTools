@@ -11,6 +11,8 @@
 7. 项目配置类（Config）
 
 ## 修改记录
+### 2022年2月6日22:40:05
+1. 优化jsonHelper
 ### 2021年9月30日19:01:25
 1. 对DBHelpe、Cryptography、LogHelper 的项目文件进行了移除，保留核心代码
 2. CryptoHelper新增MD5加密方式，对DES加密进行优化，对RSA加密进行优化

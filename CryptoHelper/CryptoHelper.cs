@@ -6,9 +6,9 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 
-namespace CryptoHelper
+namespace HOTApi.Lib
 {
-    
+
     //加密类
     public class Encrypt
     {
@@ -21,7 +21,7 @@ namespace CryptoHelper
         /// <param name="strKey">对称密钥</param>
         /// <param name="encoding">编码方式，默认default</param>
         /// <returns></returns>
-        public string T_DESEEncrypt(string strContent, string strKey, Encoding encoding )
+        public static string T_DESEEncrypt(string strContent, string strKey, Encoding encoding)
         {
             TripleDESCryptoServiceProvider DES = new TripleDESCryptoServiceProvider();
             MD5CryptoServiceProvider hashMD5 = new MD5CryptoServiceProvider();
@@ -46,14 +46,14 @@ namespace CryptoHelper
         /// </summary>
         /// <param name="strContent">待加密文本</param>
         /// <returns>返回</returns>
-        public string MD5EncryptFor16(string strContent)
+        public static string MD5EncryptFor16(string strContent)
         {
             MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
             string t2 = BitConverter.ToString(md5.ComputeHash(UTF8Encoding.Default.GetBytes(strContent)), 4, 8);
             t2 = t2.Replace("-", "");
             return t2;
         }
-        public string MD5EncryptFor32(string strContent)
+        public static string MD5EncryptFor32(string strContent)
         {
             string result = "";
             MD5 md5 = MD5.Create(); //实例化一个md5对像
@@ -67,7 +67,7 @@ namespace CryptoHelper
             }
             return result;
         }
-        public string MD5EncryptFor64(string strContent)
+        public static string MD5EncryptFor64(string strContent)
         {
             MD5 md5 = MD5.Create(); //实例化一个md5对像
                                     // 加密后是一个字节类型的数组，这里要注意编码UTF8/Unicode等的选择　
@@ -78,7 +78,7 @@ namespace CryptoHelper
 
         //---------------------------------------RSA  BEGIN--------------------------------------------
         //RSA加密算法，第一个参数为公钥，第二个参数为要加密的数据
-        public string RSAEncrypt(string PublicKey, string EncryptString)
+        public static string RSAEncrypt(string PublicKey, string EncryptString)
         {
             string str2;
             try
@@ -158,7 +158,7 @@ namespace CryptoHelper
 
         /// <returns></returns>
 
-        public string ReadKey(string path)
+        public static string ReadKey(string path)
         {
 
             StreamReader reader = new StreamReader(path);
@@ -171,7 +171,7 @@ namespace CryptoHelper
 
         }
 
-       //--------------------------------------RSA  END---------------------------------------
+        //--------------------------------------RSA  END---------------------------------------
 
 
     }
@@ -186,7 +186,7 @@ namespace CryptoHelper
         /// <param name="strKey">加密秘钥</param>
         /// <param name="encoding">编码方式</param>
         /// <returns></returns>
-        public string T_DESDecrypt(string strContent, string strKey, Encoding encoding)
+        public static string T_DESDecrypt(string strContent, string strKey, Encoding encoding)
         {
             TripleDESCryptoServiceProvider DES = new TripleDESCryptoServiceProvider();
             MD5CryptoServiceProvider hashMD5 = new MD5CryptoServiceProvider();
@@ -199,7 +199,7 @@ namespace CryptoHelper
         }
 
         //RSA解密算法，第一个参数为私钥，第二个参数为要解密的数据
-        public string RSADecrypt(string PrivateKey, string DecryptString)
+        public static string RSADecrypt(string PrivateKey, string DecryptString)
         {
             string str2;
             try
