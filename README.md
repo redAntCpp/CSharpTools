@@ -9,6 +9,7 @@
 5. 日志记录类（LogHelper）
 6. 文件上传类（UpdateFile）
 7. 项目配置类（Config）
+8. Token实现类（TokenHelper）
 
 ## 修改记录
  **2022年2月14日16:58:12**
